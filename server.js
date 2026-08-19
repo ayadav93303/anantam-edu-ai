@@ -97,7 +97,7 @@ function markdownToHtml(input) {
       .join(" ");
 
     if (content.trim()) {
-      html += <p>${content}</p>;
+      html += '<p>${content}</p>';
     }
 
     paragraph = [];
