@@ -61,7 +61,6 @@ function inlineMarkdown(text) {
 
   return s;
 }
-}
 
 function markdownToHtml(input) {
   const text = String(input ?? "")
