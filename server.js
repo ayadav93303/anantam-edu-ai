@@ -53,19 +53,14 @@ function inlineMarkdown(text) {
   // Inline code
   s = s.replace(/([^]+)`/g, "<code>$1</code>");
 
-  // Bold
-  s = s.replace(/\\([^]+)\\*/g, "<strong>$1</strong>");
+  // Bold with **
+  s = s.replace(/\\(.+?)\\/g, "<strong>$1</strong>");
 
-  // Bold using __
-  s = s.replace(/_([^]+)__/g, "<strong>$1</strong>");
-
-  // Italic
-  s = s.replace(/(^|[^])\([^]+)\(?!\*)/g, "$1<em>$2</em>");
-
-  // Italic using _
-  s = s.replace(/(^|[^])([^]+)(?!_)/g, "$1<em>$2</em>");
+  // Bold with __
+  s = s.replace(/_(.+?)_/g, "<strong>$1</strong>");
 
   return s;
+}
 }
 
 function markdownToHtml(input) {
