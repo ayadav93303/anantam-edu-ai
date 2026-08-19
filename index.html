@@ -1,104 +1,976 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07111f">
-<title>Anantam Edu AI</title>
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href=icon.svg">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#07111f"
+  >
+
+  <meta
+    name="description"
+    content="Anantam Edu AI — Your personal AI study partner."
+  >
+
+  <title>Anantam Edu AI</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="anantam-education-icon.png"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <style>
+    /* Logo fixes */
+    .mini-logo img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-logo {
+      width: min(100%, 320px);
+      max-height: 220px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 18px;
+      background: #ffffff;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
+    .brand-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand-line img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+
+    .profile-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      border-radius: 22px;
+      background: #ffffff;
+      padding: 8px;
+    }
+
+    .screen {
+      min-height: 70vh;
+    }
+
+    .brand-hero {
+      text-align: left;
+    }
+
+    .brand-hero h1 {
+      margin-top: 20px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .messages {
+      margin-top: 15px;
+    }
+
+    .composer {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .composer input {
+      flex: 1;
+    }
+
+    .full {
+      width: 100%;
+    }
+  </style>
 </head>
+
 <body>
-<div class="orb a"></div><div class="orb b"></div>
 
-<header class="topbar">
-  <div class="welcome">
-    <div class="mini-logo"><img src=icon.svg" alt="Anantam"></div>
-    <div><div class="hello">Hi Amit 👋</div><div class="welcome-text">Welcome to Anantam Edu AI</div></div>
-  </div>
-  <button id="themeBtn" class="icon-btn">☾</button>
-</header>
+  <!-- Decorative background -->
+  <div class="orb a"></div>
+  <div class="orb b"></div>
 
-<main>
-<section id="home" class="screen active">
-  <div class="brand-hero glass">
-    <div class="brand-line"><img src=icon.svg"><div><strong>Anantam Edu AI</strong><span>Learn Smarter. Understand Better.</span></div></div>
-    <h1>Your personal AI<br><span>study partner.</span></h1>
-    <p>Ask questions, create notes, prepare exam papers and practice with an AI built for students.</p>
-    <button class="primary" onclick="openChat()">Ask AI <b>→</b></button>
-  </div>
+  <!-- TOP BAR -->
+  <header class="topbar">
 
-  <h2>AI Study Tools</h2>
-  <div class="tool-grid">
-    <button class="tool" onclick="show('notes')"><div class="tool-icon">▤</div><b>Add Notes Generator</b><small>Topic → clean revision notes</small></button>
-    <button class="tool" onclick="show('exam')"><div class="tool-icon">✎</div><b>Exam Prep</b><small>Generate a complete question paper</small></button>
-    <button class="tool" onclick="openChat()"><div class="tool-icon">✦</div><b>Ask Anantam AI</b><small>Explain, solve and revise</small></button>
-    <button class="tool" onclick="show('practice')"><div class="tool-icon">✓</div><b>Practice</b><small>Test yourself before exams</small></button>
-  </div>
+    <div class="welcome">
 
-  <h2>Subjects</h2>
-  <div class="chips">
-    <button onclick="chatWith('Help me with Mathematics')">📐 Maths</button>
-    <button onclick="chatWith('Help me with Science')">🧪 Science</button>
-    <button onclick="chatWith('Help me with English')">📚 English</button>
-    <button onclick="chatWith('Help me with Hindi')">📝 Hindi</button>
-  </div>
-</section>
+      <div class="mini-logo">
+        <img
+          src="anantam-education-icon.png"
+          alt="Anantam Education"
+        >
+      </div>
 
-<section id="chat" class="screen">
-  <div class="page-title"><div><h1>Ask Anantam AI</h1><p>Your study assistant</p></div><span id="aiStatus" class="status">● Ready</span></div>
-  <div id="messages" class="messages">
-    <div class="message ai"><img src=icon.svg"><div class="bubble"><b>Anantam Edu AI</b><p>Hi Amit! Tell me what you're studying. I can explain concepts, solve questions, make revision material and help you prepare for exams.</p></div></div>
-  </div>
-  <div class="chips suggestions">
-    <button onclick="chatWith('Explain photosynthesis in simple Hinglish')">Explain a topic</button>
-    <button onclick="chatWith('Give me five exam practice questions')">Practice</button>
-    <button onclick="show('notes')">Make notes</button>
-    <button onclick="show('exam')">Make exam paper</button>
-  </div>
-  <form id="chatForm" class="composer"><input id="chatInput" placeholder="Ask Anantam AI anything..." autocomplete="off"><button>➤</button></form>
-</section>
+      <div>
+        <div class="hello">
+          Hi Amit 👋
+        </div>
 
-<section id="notes" class="screen">
-  <div class="page-title"><div><h1>Notes Generator</h1><p>Create exam-friendly notes in seconds.</p></div></div>
-  <div class="form-card glass">
-    <div class="two"><label>Class<select id="noteClass"><option>Class 6</option><option>Class 7</option><option selected>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option></select></label>
-    <label>Subject<select id="noteSubject"><option>Mathematics</option><option selected>Science</option><option>English</option><option>Hindi</option></select></label></div>
-    <label>Topic / chapter<input id="noteTopic" value="Photosynthesis" placeholder="e.g. Force and Pressure"></label>
-    <label>Language<select id="noteLang"><option>English</option><option>Hinglish</option><option>Hindi</option></select></label>
-    <button class="primary full" onclick="generateNotes()">Generate Notes with AI</button>
-  </div>
-  <div id="noteOutput"></div>
-</section>
+        <div class="welcome-text">
+          Welcome to Anantam Edu AI
+        </div>
+      </div>
 
-<section id="exam" class="screen">
-  <div class="page-title"><div><h1>Exam Prep</h1><p>Generate a printable-style question paper.</p></div></div>
-  <div class="form-card glass">
-    <div class="two"><label>Class<select id="examClass"><option>Class 6</option><option>Class 7</option><option selected>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option></select></label>
-    <label>Subject<select id="examSubject"><option>Mathematics</option><option selected>Science</option><option>English</option><option>Hindi</option></select></label></div>
-    <div class="two"><label>Total Marks<select id="marks"><option>25</option><option selected>50</option><option>80</option><option>100</option></select></label>
-    <label>Difficulty<select id="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select></label></div>
-    <label>Chapters / topics<input id="examTopics" placeholder="e.g. Force, Pressure, Friction"></label>
-    <label>Question mix<select id="mix"><option>MCQ + Short + Long</option><option>MCQ + Short</option><option>Short + Long</option></select></label>
-    <button class="primary full" onclick="generateExam()">Generate Question Paper with AI</button>
-  </div>
-  <div id="examOutput"></div>
-</section>
+    </div>
 
-<section id="practice" class="screen">
-  <div class="page-title"><div><h1>Practice</h1><p>Quick exam-style practice.</p></div></div>
-  <div class="practice glass"><span class="badge">SCIENCE • CLASS 8</span><h2>Which gas do green plants mainly absorb during photosynthesis?</h2>
-  <div class="answers"><button onclick="pick(this,false)">A. Oxygen</button><button onclick="pick(this,false)">B. Nitrogen</button><button onclick="pick(this,true)">C. Carbon dioxide</button><button onclick="pick(this,false)">D. Hydrogen</button></div><p id="result"></p></div>
-</section>
+    <button
+      id="themeBtn"
+      class="icon-btn"
+      aria-label="Toggle theme"
+    >
+      ☾
+    </button>
 
-<section id="profile" class="screen">
-  <div class="profile glass"><img src=icon.svg"><h1>Anantam Edu AI</h1><p>Welcome, Amit.</p></div>
-  <div class="info glass"><b>Student profile</b><div><span>Name</span><strong>Amit</strong></div><div><span>Learning mode</span><strong>English • Hindi • Hinglish</strong></div><div><span>Subjects</span><strong>Maths • Science • English • Hindi</strong></div></div>
-</section>
-</main>
+  </header>
 
-<nav class="bottom"><button class="nav active" data-id="home">⌂<small>Home</small></button><button class="nav" data-id="chat">✦<small>AI</small></button><button class="nav" data-id="exam">✎<small>Exam</small></button><button class="nav" data-id="notes">▤<small>Notes</small></button><button class="nav" data-id="profile">●<small>Profile</small></button></nav>
-<script src="app.js"></script>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ================= HOME ================= -->
+
+    <section
+      id="home"
+      class="screen active"
+    >
+
+      <div class="brand-hero glass">
+
+        <div class="logo-wrap">
+
+          <img
+            class="brand-logo"
+            src="anantam-education-logo.png"
+            alt="Anantam Education"
+          >
+
+        </div>
+
+        <div class="brand-line">
+
+          <img
+            src="anantam-education-icon.png"
+            alt="Anantam Education"
+          >
+
+          <div>
+
+            <strong>
+              Anantam Edu AI
+            </strong>
+
+            <span>
+              Learn Smarter. Understand Better.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <h1>
+          Your personal AI
+          <br>
+          <span>study partner.</span>
+        </h1>
+
+
+        <p>
+          Ask questions, create notes, prepare
+          exam papers and practice with an AI built
+          for students.
+        </p>
+
+
+        <button
+          class="primary"
+          onclick="openChat()"
+        >
+          Ask AI
+          <b>→</b>
+        </button>
+
+      </div>
+
+
+      <!-- STUDY TOOLS -->
+
+      <h2>
+        AI Study Tools
+      </h2>
+
+      <div class="tool-grid">
+
+        <button
+          class="tool"
+          onclick="show('notes')"
+        >
+
+          <div class="tool-icon">
+            ▤
+          </div>
+
+          <b>
+            Add Notes Generator
+          </b>
+
+          <small>
+            Topic → clean revision notes
+          </small>
+
+        </button>
+
+
+        <button
+          class="tool"
+          onclick="show('exam')"
+        >
+
+          <div class="tool-icon">
+            ✎
+          </div>
+
+          <b>
+            Exam Prep
+          </b>
+
+          <small>
+            Generate a complete question paper
+          </small>
+
+        </button>
+
+
+        <button
+          class="tool"
+          onclick="openChat()"
+        >
+
+          <div class="tool-icon">
+            ✦
+          </div>
+
+          <b>
+            Ask Anantam AI
+          </b>
+
+          <small>
+            Explain, solve and revise
+          </small>
+
+        </button>
+
+
+        <button
+          class="tool"
+          onclick="show('practice')"
+        >
+
+          <div class="tool-icon">
+            ✓
+          </div>
+
+          <b>
+            Practice
+          </b>
+
+          <small>
+            Test yourself before exams
+          </small>
+
+        </button>
+
+      </div>
+
+
+      <!-- SUBJECTS -->
+
+      <h2>
+        Subjects
+      </h2>
+
+      <div class="chips">
+
+        <button
+          onclick="chatWith('Help me with Mathematics')"
+        >
+          📐 Maths
+        </button>
+
+        <button
+          onclick="chatWith('Help me with Science')"
+        >
+          🔬 Science
+        </button>
+
+        <button
+          onclick="chatWith('Help me with English')"
+        >
+          📚 English
+        </button>
+
+        <button
+          onclick="chatWith('Help me with Hindi')"
+        >
+          📖 Hindi
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= AI CHAT ================= -->
+
+    <section
+      id="chat"
+      class="screen"
+    >
+
+      <div class="page-title">
+
+        <div>
+
+          <h1>
+            Ask Anantam AI
+          </h1>
+
+          <p>
+            Your study assistant
+          </p>
+
+        </div>
+
+        <span
+          id="aiStatus"
+          class="status"
+        >
+          Ready
+        </span>
+
+      </div>
+
+
+      <div
+        id="messages"
+        class="messages"
+      >
+
+        <div class="message ai">
+
+          <img
+            src="anantam-education-icon.png"
+            alt="Anantam AI"
+          >
+
+          <div class="bubble">
+
+            <b>
+              Anantam Edu AI
+            </b>
+
+            <p>
+              Hi Amit! Tell me what you're studying.
+              I can explain concepts, solve questions,
+              create notes and help you prepare for exams.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="chips suggestions">
+
+          <button
+            onclick="chatWith('Explain photosynthesis in simple Hinglish')"
+          >
+            Explain a topic
+          </button>
+
+          <button
+            onclick="chatWith('Give me five exam practice questions')"
+          >
+            Practice
+          </button>
+
+          <button
+            onclick="show('notes')"
+          >
+            Make notes
+          </button>
+
+          <button
+            onclick="show('exam')"
+          >
+            Make exam paper
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <form
+        id="chatForm"
+        class="composer"
+      >
+
+        <input
+          id="chatInput"
+          placeholder="Ask Anantam AI anything..."
+          autocomplete="off"
+        >
+
+        <button
+          type="submit"
+          class="primary"
+        >
+          →
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- ================= NOTES ================= -->
+
+    <section
+      id="notes"
+      class="screen"
+    >
+
+      <div class="page-title">
+
+        <div>
+
+          <h1>
+            Notes Generator
+          </h1>
+
+          <p>
+            Create exam-friendly notes in seconds.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-card glass">
+
+        <div class="two">
+
+          <label>
+            Class
+
+            <select id="noteClass">
+
+              <option>
+                Class 6
+              </option>
+
+              <option>
+                Class 7
+              </option>
+
+              <option selected>
+                Class 8
+              </option>
+
+              <option>
+                Class 9
+              </option>
+
+              <option>
+                Class 10
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+            Subject
+
+            <select id="noteSubject">
+
+              <option>
+                Mathematics
+              </option>
+
+              <option selected>
+                Science
+              </option>
+
+              <option>
+                English
+              </option>
+
+              <option>
+                Hindi
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <label>
+          Topic / chapter
+
+          <input
+            id="noteTopic"
+            value="Photosynthesis"
+            placeholder="e.g. Force and Pressure"
+          >
+
+        </label>
+
+
+        <label>
+          Language
+
+          <select id="noteLang">
+
+            <option>
+              English
+            </option>
+
+            <option>
+              Hinglish
+            </option>
+
+            <option>
+              Hindi
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <button
+          class="primary full"
+          onclick="generateNotes()"
+        >
+          Generate Notes with AI
+        </button>
+
+      </div>
+
+
+      <div id="noteOutput"></div>
+
+    </section>
+
+
+    <!-- ================= EXAM ================= -->
+
+    <section
+      id="exam"
+      class="screen"
+    >
+
+      <div class="page-title">
+
+        <h1>
+          Exam Prep
+        </h1>
+
+        <p>
+          Generate a printable-style question paper.
+        </p>
+
+      </div>
+
+
+      <div class="form-card glass">
+
+        <div class="two">
+
+          <label>
+            Class
+
+            <select id="examClass">
+
+              <option>
+                Class 6
+              </option>
+
+              <option>
+                Class 7
+              </option>
+
+              <option selected>
+                Class 8
+              </option>
+
+              <option>
+                Class 9
+              </option>
+
+              <option>
+                Class 10
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+            Subject
+
+            <select id="examSubject">
+
+              <option>
+                Mathematics
+              </option>
+
+              <option selected>
+                Science
+              </option>
+
+              <option>
+                English
+              </option>
+
+              <option>
+                Hindi
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <div class="two">
+
+          <label>
+            Total Marks
+
+            <select id="marks">
+
+              <option>
+                25
+              </option>
+
+              <option selected>
+                50
+              </option>
+
+              <option>
+                80
+              </option>
+
+              <option>
+                100
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label>
+            Difficulty
+
+            <select id="difficulty">
+
+              <option>
+                Easy
+              </option>
+
+              <option selected>
+                Medium
+              </option>
+
+              <option>
+                Hard
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <label>
+          Chapters / topics
+
+          <input
+            id="examTopics"
+            placeholder="e.g. Force, Pressure, Friction"
+          >
+
+        </label>
+
+
+        <label>
+          Question mix
+
+          <select id="mix">
+
+            <option selected>
+              MCQ + Short + Long
+            </option>
+
+            <option>
+              Short + Long
+            </option>
+
+            <option>
+              MCQ
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <button
+          class="primary full"
+          onclick="generateExam()"
+        >
+          Generate Question Paper with AI
+        </button>
+
+      </div>
+
+
+      <div id="examOutput"></div>
+
+    </section>
+
+
+    <!-- ================= PRACTICE ================= -->
+
+    <section
+      id="practice"
+      class="screen"
+    >
+
+      <div class="page-title">
+
+        <h1>
+          Practice
+        </h1>
+
+        <p>
+          Quick exam-style practice.
+        </p>
+
+      </div>
+
+
+      <div class="practice-card glass">
+
+        <span class="badge">
+          SCIENCE • CLASS 8
+        </span>
+
+
+        <h2>
+          Which gas do green plants mainly
+          absorb during photosynthesis?
+        </h2>
+
+
+        <div class="answers">
+
+          <button
+            onclick="pick(this,false)"
+          >
+            A. Oxygen
+          </button>
+
+          <button
+            onclick="pick(this,false)"
+          >
+            B. Nitrogen
+          </button>
+
+          <button
+            onclick="pick(this,true)"
+          >
+            C. Carbon dioxide
+          </button>
+
+          <button
+            onclick="pick(this,false)"
+          >
+            D. Hydrogen
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section
+      id="profile"
+      class="screen"
+    >
+
+      <div class="profile glass">
+
+        <img
+          class="profile-logo"
+          src="anantam-education-logo.png"
+          alt="Anantam Education"
+        >
+
+
+        <h1>
+          Anantam Edu AI
+        </h1>
+
+
+        <p>
+          Welcome, Amit.
+        </p>
+
+
+        <div class="info glass">
+
+          <b>
+            Student profile
+          </b>
+
+
+          <div>
+            <span>
+              Name
+            </span>
+
+            <strong>
+              Amit
+            </strong>
+          </div>
+
+
+          <div>
+            <span>
+              Learning mode
+            </span>
+
+            <strong>
+              English • Hindi • Hinglish
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= BOTTOM NAV ================= -->
+
+  <nav class="bottom">
+
+    <button
+      class="nav active"
+      data-id="home"
+      onclick="show('home')"
+    >
+      <span>⌂</span>
+      <small>Home</small>
+    </button>
+
+
+    <button
+      class="nav"
+      data-id="chat"
+      onclick="show('chat')"
+    >
+      <span>✦</span>
+      <small>AI</small>
+    </button>
+
+
+    <button
+      class="nav"
+      data-id="exam"
+      onclick="show('exam')"
+    >
+      <span>✎</span>
+      <small>Exam</small>
+    </button>
+
+
+    <button
+      class="nav"
+      data-id="notes"
+      onclick="show('notes')"
+    >
+      <span>▤</span>
+      <small>Notes</small>
+    </button>
+
+
+    <button
+      class="nav"
+      data-id="profile"
+      onclick="show('profile')"
+    >
+      <span>●</span>
+      <small>Profile</small>
+    </button>
+
+  </nav>
+
+
+  <!-- YOUR EXISTING JAVASCRIPT -->
+  <script src="app.js"></script>
+
 </body>
-</html>
+</htm
